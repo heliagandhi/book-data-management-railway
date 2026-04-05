@@ -168,6 +168,9 @@ Gunakan token di header:
 ```
 Authorization: Bearer JWT_TOKEN
 ```
+<img width="819" height="392" alt="image" src="https://github.com/user-attachments/assets/3297a4e5-9423-4d76-9572-076274c369df" />
+
+
 
 ---
 

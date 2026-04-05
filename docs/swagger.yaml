@@ -44,7 +44,7 @@ definitions:
       username:
         type: string
     type: object
-host: localhost:8080
+host: book-data-management-railway-production.up.railway.app
 info:
   contact: {}
   description: API for managing books and categories
@@ -471,6 +471,8 @@ paths:
       summary: Login user to get token
       tags:
       - Users
+schemes:
+- https
 securityDefinitions:
   BearerAuth:
     in: header

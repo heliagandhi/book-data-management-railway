@@ -1,8 +1,9 @@
 // @title Book Data Management API
 // @version 1.0
 // @description API for managing books and categories
-// @host localhost:8080
+// @host book-data-management-railway-production.up.railway.app
 // @BasePath /api
+// @schemes https
 
 // @securityDefinitions.apikey BearerAuth
 // @in header
@@ -14,12 +15,14 @@ import (
 	"book-data-management-railway/config"
 	"book-data-management-railway/controllers"
 	"book-data-management-railway/middleware"
+	"os"
 
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	_ "book-data-management-railway/docs"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,6 +31,13 @@ func main() {
 	config.ConnectDB()
 
 	router := gin.Default()
+
+	// Tambahkan middleware CORS
+    router.Use(cors.New(cors.Config{
+        AllowOrigins: []string{"*"}, // atau ganti dengan domain Railway kamu
+        AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
+        AllowHeaders: []string{"Origin", "Authorization", "Content-Type"},
+    }))
 
 	api := router.Group("/api")
 	{
@@ -64,7 +74,13 @@ func main() {
 		}
 	}
 
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// Swagger endpoint
+    router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	router.Run(":8080")
+    // Railway biasanya pakai PORT dari environment variable
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080"
+    }
+    router.Run(":" + port)
 }

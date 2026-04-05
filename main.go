@@ -27,10 +27,6 @@ func main() {
 	// init DB
 	config.ConnectDB()
 
-	// TEMP: create dummy user
-	// hashed, _ := utils.HashPassword("admin")
-	// repositories.CreateUser("superadmin", hashed)
-
 	router := gin.Default()
 
 	api := router.Group("/api")

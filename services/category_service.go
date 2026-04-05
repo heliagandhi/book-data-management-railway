@@ -41,10 +41,5 @@ func DeleteCategory(id int) error {
 		return errors.New("category not found")
 	}
 
-	// books, _ := repositories.GetBooksByCategoryID(id)
-	// if len(books) > 0 {
-	// 	return errors.New("cannot delete category with existing books")
-	// }
-
 	return repositories.DeleteCategory(id)
 }

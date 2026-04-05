@@ -35,7 +35,7 @@ func GetCategoryByID(id int) (*models.Category, error) {
 	).Scan(&c.ID, &c.Name)
 
 	if err != nil {
-		return nil, nil // ⬅️ ini penting
+		return nil, nil
 	}
 
 	return &c, nil
@@ -68,7 +68,7 @@ func DeleteCategory(id int) error {
 
 	rowsAffected, _ := res.RowsAffected()
 	if rowsAffected == 0 {
-		return nil // kita handle di service
+		return nil // handle di service
 	}
 
 	return nil

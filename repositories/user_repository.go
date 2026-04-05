@@ -115,7 +115,7 @@ func DeleteUser(id int) error {
 	}
 
 	if rows == 0 {
-		return nil // tetap handle di service
+		return nil // handle di service
 	}
 
 	return nil
